@@ -88,7 +88,7 @@ class CheckButtonPressSensor(BaseSensorOperator):
 
             if button_marker == self.button_marker:
                 self.updates_result['update_id'] = update_id
-                self.updates_result['chat_id'] = ENV['chat_id']
+                # self.updates_result['chat_id'] = ENV['chat_id']
                 self.updates_result['username'] = username
                 self.updates_result['button_marker'] = button_marker
                 self.updates_result['triggered_at'] = triggered_at
@@ -140,7 +140,7 @@ class ReportToAirtableOperator(BaseOperator):
 
         airtable_fields_json = {
             "fields": {
-                "chat_id": str(button_data["chat_id"]),
+                "chat_id": ENV['TG_BOT_CHAT_ID'],
                 "username": button_data["username"],
                 "triggered_at": button_data["triggered_at"],
                 "event_type": "button_press",
