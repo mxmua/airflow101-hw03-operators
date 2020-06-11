@@ -5,14 +5,11 @@ import json
 from typing import List, Union
 from datetime import datetime
 
-# from airflow.models import DAG
 from airflow.models.baseoperator import BaseOperator
 from airflow.sensors.base_sensor_operator import BaseSensorOperator
-# from airflow.operators.dummy_operator import DummyOperator
 from airflow.utils.decorators import apply_defaults
-# from airflow.utils.dates import days_ago
 
-# from secur.hw03_credentials import ENV
+from secur.hw03_credentials import ENV
 
 
 class Bot:
@@ -37,7 +34,6 @@ class Bot:
             reply_markup: dict,
             parse_mode: str = 'Markdown',
             disable_notification: bool = True,
-            # remove_keyboard: bool = True,
     ) -> None:
         payload = {
             'chat_id': chat_id,
@@ -92,7 +88,7 @@ class CheckButtonPressSensor(BaseSensorOperator):
 
             if button_marker == self.button_marker:
                 self.updates_result['update_id'] = update_id
-                self.updates_result['chat_id'] = update_id
+                self.updates_result['chat_id'] = ENV['chat_id']
                 self.updates_result['username'] = username
                 self.updates_result['button_marker'] = button_marker
                 self.updates_result['triggered_at'] = triggered_at
