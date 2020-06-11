@@ -2,11 +2,11 @@ from setuptools import setup
 
 setup(
     # Needed to silence warnings (and to be a worthwhile package)
-    name='hw03-operators',
+    name='hw03_operators',
     url='https://github.com/mxmua/test-pkg',
     author='mxmua',
     # Needed to actually package something
-    packages=['hw03-operators'],
+    packages=['hw03_operators'],
     # Needed for dependencies
     # install_requires=['numpy'],
     # *strongly* suggested for sharing
