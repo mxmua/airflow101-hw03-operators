@@ -48,6 +48,21 @@ class Bot:
         )
         return response.json()
 
+    def delete_keyboard(
+            self,
+            chat_id: Union[str, int],
+            message_id: Union[str, int],
+    ) -> None:
+        payload = {
+            'chat_id': chat_id,
+            'message_id': message_id,
+        }
+        response = requests.post(
+            f'{self.base_url}/deleteMessage', json=payload, timeout=5
+        )
+        return response.json()
+
+
 
 class SendButtonOperator(BaseOperator):
     @apply_defaults
@@ -94,6 +109,7 @@ class CheckButtonPressSensor(BaseSensorOperator):
                 self.updates_result['triggered_at'] = triggered_at
 
                 print(f'updates: {updates}')
+                break
 
         # Return true if not empty otherwise return false
         return any(self.updates_result)
